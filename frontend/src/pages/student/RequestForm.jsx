@@ -20,6 +20,7 @@ const RequestForm = () => {
   const [previews, setPreviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [imageError, setImageError] = useState('');
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -27,11 +28,30 @@ const RequestForm = () => {
   });
 
   const handleImageChange = (e) => {
+    setImageError('');
     const files = Array.from(e.target.files);
-    setImages(prev => [...prev, ...files]);
+    
+    const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1MB
+    const validFiles = [];
+    const oversizedFiles = [];
 
-    const newPreviews = files.map(file => URL.createObjectURL(file));
-    setPreviews(prev => [...prev, ...newPreviews]);
+    files.forEach(file => {
+      if (file.size <= MAX_FILE_SIZE) {
+        validFiles.push(file);
+      } else {
+        oversizedFiles.push(file.name);
+      }
+    });
+
+    if (oversizedFiles.length > 0) {
+      setImageError(`The following file(s) exceed the 1MB limit: ${oversizedFiles.join(', ')}`);
+    }
+
+    if (validFiles.length > 0) {
+      setImages(prev => [...prev, ...validFiles]);
+      const newPreviews = validFiles.map(file => URL.createObjectURL(file));
+      setPreviews(prev => [...prev, ...newPreviews]);
+    }
   };
 
   const removeImage = (index) => {
@@ -156,7 +176,13 @@ const RequestForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Images (Optional)</label>
+          <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Images (Optional) <span className="text-xs text-slate-400 font-normal ml-2">(Max size: 1MB per image)</span></label>
+          {imageError && (
+            <div className="mb-3 p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400 text-xs font-bold flex items-center gap-2">
+              <AlertTriangle size={14} />
+              <span>{imageError}</span>
+            </div>
+          )}
           <div className="grid grid-cols-4 gap-4 mb-4">
             {previews.map((src, i) => (
               <div key={i} className="relative group rounded-xl overflow-hidden aspect-square border-2 border-slate-100 dark:border-slate-700">
