@@ -12,7 +12,7 @@ const LandingPage = () => {
       {/* Navigation */}
       <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
-          <img src={amuLogo} alt="AMU Logo" className="w-10 h-10 object-contain drop-shadow-md" />
+          <img src={amuLogo} alt="AMU Logo" className="w-10 h-10 object-cover rounded-full drop-shadow-md" />
           <span className="font-bold text-xl text-slate-800">AMU</span>
         </div>
         <div className="flex items-center gap-6">

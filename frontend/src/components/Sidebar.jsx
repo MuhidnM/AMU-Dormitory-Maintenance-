@@ -65,7 +65,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <div className="lg:hidden flex flex-col h-full w-full">
            <div className="p-6 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <img src={amuLogo} alt="AMU Logo" className="w-8 h-8 object-contain drop-shadow-md" />
+                <img src={amuLogo} alt="AMU Logo" className="w-8 h-8 object-cover rounded-full drop-shadow-md" />
                 <span className="font-bold text-xl text-slate-900 dark:text-white">AMU</span>
               </div>
               <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
@@ -88,7 +88,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 const SidebarContent = ({ items, location, logout }) => (
   <>
     <div className="p-8 flex items-center gap-3">
-      <img src={amuLogo} alt="AMU Logo" className="w-10 h-10 object-contain drop-shadow-md" />
+      <img src={amuLogo} alt="AMU Logo" className="w-10 h-10 object-cover rounded-full drop-shadow-md" />
       <span className="font-bold text-xl text-slate-900 dark:text-white tracking-tight">AMU</span>
     </div>
 

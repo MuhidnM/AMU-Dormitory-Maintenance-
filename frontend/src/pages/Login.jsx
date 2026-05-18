@@ -69,7 +69,7 @@ const LoginPage = () => {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="w-14 h-14 object-contain mb-6 drop-shadow-md"
+              className="w-14 h-14 object-cover rounded-full mb-6 drop-shadow-md"
             />
             <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Welcome back</h1>
             <p className="text-slate-500 dark:text-slate-400 mt-3 text-lg">Please enter your details to sign in.</p>
@@ -185,7 +185,7 @@ const LoginPage = () => {
 
         <div className="relative z-20 h-full flex flex-col justify-between p-16 text-white">
           <div className="flex items-center gap-3">
-            <img src={amuLogo} alt="AMU Logo" className="w-10 h-10 object-contain drop-shadow-md" />
+            <img src={amuLogo} alt="AMU Logo" className="w-10 h-10 object-cover rounded-full drop-shadow-md" />
             <span className="font-bold text-xl tracking-tight">AMU Dormitory Maintenance Request System</span>
           </div>
 
