@@ -46,6 +46,10 @@ app.use('/api/users', userRoutes);
 app.use('/api/notifications', notificationRoutes);
 
 // Root route
+app.get('/', (req, res) => {
+  res.json({ message: 'AMU Dormitory Maintenance API is running successfully!' });
+});
+
 app.get('/api', (req, res) => {
   res.json({ message: 'Welcome to AMU Dormitory Maintenance API' });
 });
